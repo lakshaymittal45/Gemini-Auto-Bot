@@ -1,21 +1,17 @@
-#Initial System Ask
 import pyttsx3
 import google.generativeai as genai
 import os
-#LIstening from user and typing
 import speech_recognition as sr
 
 
 def text_to_speech1(text):
     # Initialize the text-to-speech engine
     engine = pyttsx3.init()
-
     # Set properties
     voices = engine.getProperty('voices')
     engine.setProperty('rate', 95) 
     engine.setProperty('volume', 1.0) 
     engine.setProperty('voice', voices[1].id)
-
     # Speak the text
     engine.say(text)
     engine.runAndWait()
@@ -71,18 +67,14 @@ if __name__ == "__main__":
      else:
         print("No response received.")
 
-
+# Converting Response To Speech
 
 def text_to_speech(text):
-    # Initialize the text-to-speech engine
     engine = pyttsx3.init() 
-    # Set properties (optional)
     voices = engine.getProperty('voices')
     engine.setProperty('rate', 140)
     engine.setProperty('volume', 1.0)
     engine.setProperty('voice', voices[1].id)
-
-    # Speak the text
     engine.say(text)
     engine.runAndWait()
 
@@ -91,7 +83,7 @@ text_to_speech(response)
 
 def repeat_speech_if_needed(text):
     while True:
-        # Ask the user if they understood
+        # Asking the user if they understood
         text_to_speech1("Did you understand the message")
         user_input = input("Did you understand the message? (yes/no): ").strip().lower()
         
@@ -103,7 +95,6 @@ def repeat_speech_if_needed(text):
             break  
         elif user_input == 'no':
             print("Repeating the message...")
-            # Convert text to speech
             text_to_speech(text)
         else:
             print("Please respond with 'yes' or 'no'.")
